@@ -13,12 +13,18 @@ app.get('/api/data', (req, res) => {
             messages: [{ role: "system", content: "You are a helpful assistant." }],
             model: "gpt-3.5-turbo",
         });
-
+        
         console.log(completion.choices[0]);
+        return completion.choices[0];
     }
 
-    main();
-
+    /*response.writehead(200, { 'Content-Type': 'application/json' });
+    response.write(json.stringify(main()));
+    */
+    main().then(function(result) {
+        console.log("result: " + result);
+        res.json(result);
+    });
 });
 
 app.listen(3000, () => {

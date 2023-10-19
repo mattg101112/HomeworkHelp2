@@ -8,7 +8,9 @@ const SendButton = () => {
     try {
       const response = await fetch('http://10.0.0.4:3000/api/data');
       const jsonData = await response.json();
-      setData(jsonData);
+      console.error('jsonData:' + jsonData);
+      setData(jsonData.message);
+      console.error("after setData");
     } catch (error) {
       console.error('Error ftching data: ', error);
     }
@@ -17,6 +19,7 @@ const SendButton = () => {
   return (
     <View>
       <Button title="Fetch Data" onPress={fetchData} />
+      {console.error("data: " + data)}
       {data && <Text>{JSON.stringify(data)}</Text>}
     </View>
   );
