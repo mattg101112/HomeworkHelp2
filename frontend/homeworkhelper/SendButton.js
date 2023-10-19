@@ -4,19 +4,24 @@ import { View, Button, Text } from 'react-native';
 const SendButton = () => {
   const [data, setData] = useState(null);
 
+  const dataToSend = {
+    message: "What is a healthy meal that I can eat?",
+  }
+
   const fetchData = async () => {
     try {
-      const dataToSend = {
-        message: "What is a healthy meal that I can eat?",
-      }
+      
       const response = await fetch('http://192.168.1.74:3000/api/data', {
         method: 'POST',
         headers: {
-          Acceopt: 'application/json',
-          'Content_Type': 'application/json',
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataToSend),
+        body: JSON.stringify({
+          message: "What is a healthy meal that I can eat?",
+        }),
       });
+      console.error("Hi dataToSend" + dataToSend);
       const jsonData = await response.json();
       console.error('jsonData:' + jsonData);
       setData(jsonData.message);

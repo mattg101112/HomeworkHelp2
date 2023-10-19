@@ -5,12 +5,13 @@ const app = express();
 app.use(express.json());
 
 app.post('/api/data', (req, res) => {
-  console.log("req.body: " + req);
+  console.log("req.body:")
+  console.log(req.body);
 
     async function main() {
         const openai = new OpenAIApi();
         const completion = await openai.chat.completions.create({
-            messages: [{ "role": "user", "content": "Hi chatgpt.  How are you today?" }],
+            messages: [{ "role": "user", "content": req.body.message }],
             model: "gpt-3.5-turbo",
         });
         
