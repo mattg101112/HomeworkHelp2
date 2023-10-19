@@ -6,11 +6,11 @@ const SendButton = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('https://api.example.com/data');
+      const response = await fetch('http://10.0.0.4:3000/api/data');
       const jsonData = await response.json();
       setData(jsonData);
     } catch (error) {
-      console.error('Error fetching data: ', error);
+      console.error('Error ftching data: ', error);
     }
   };
 
@@ -23,3 +23,4 @@ const SendButton = () => {
 };
 
 export default SendButton;
+

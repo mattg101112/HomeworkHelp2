@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/api/data', (req, res) => {
-  // Replace this with the data you want to send to the client
+  console.log("in api/data")
   const data = { message: 'Hello from the server!' };
   res.json(data);
 });
