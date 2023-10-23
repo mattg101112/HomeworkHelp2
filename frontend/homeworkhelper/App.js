@@ -4,8 +4,12 @@ import SendButton from './SendButton';
 
 const App = () => {
   return (
-    <View style={Styles.container}>
-      <Text>Submit your homework question and Chatgpt will help you</Text>
+    <View>
+      <View style={Styles.appTitleView}>
+        <Text style={Styles.appTitleText}>Homework</Text>
+        <Text style={Styles.appTitleText}>Helper</Text>
+      </View>
+      <Text style={Styles.textPrompt}>Submit your homework question and ChatGPT will help</Text>
       <SendButton />
     </View>
   );
@@ -13,12 +17,23 @@ const App = () => {
 
 
 const Styles = {
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 20,
+  appTitleView: {
+    textAlign: "left",
+    backgroundColor: "#98c1d9",
+    padding: 10,
+    paddingTop: 30,
+    width: "100%",
+    
   },
+  appTitleText: {
+    fontWeight: "bold",
+    fontStyle: "italic",
+    fontSize: 18
+  },
+  textPrompt: {
+    fontSize: 14,
+    padding: 10
+  }
 };
 
 export default App;
