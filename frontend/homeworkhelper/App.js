@@ -1,8 +1,17 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, ScrollView, useWindowDimensions } from 'react-native';
 import SendButton from './SendButton';
+import ResultContainer from './ResultContainer';
 
 const App = () => {
+
+  const {height, width} = useWindowDimensions()
+  const [data, setData] = useState(null);
+  const [outputHeight, setOutputHeight] = useState(height * .65)
+  function handleSizeChange(newHeight) {
+    setOutputHeight((height * .65) - newHeight + 10)
+  }
+
   return (
     <View>
       <View style={Styles.appTitleView}>
@@ -10,7 +19,13 @@ const App = () => {
         <Text style={Styles.appTitleText}>Helper</Text>
       </View>
       <Text style={Styles.textPrompt}>Submit your homework question and ChatGPT will help</Text>
-      <SendButton />
+      <SendButton 
+        setData={setData} 
+        sizeChange={handleSizeChange}
+      />
+      <ScrollView style={{height: outputHeight}}>
+        {data && <ResultContainer data={data.content}/>}
+      </ScrollView>
     </View>
   );
 };
@@ -23,7 +38,6 @@ const Styles = {
     padding: 10,
     paddingTop: 30,
     width: "100%",
-    
   },
   appTitleText: {
     fontWeight: "bold",
@@ -33,6 +47,9 @@ const Styles = {
   textPrompt: {
     fontSize: 14,
     padding: 10
+  },
+  container: {
+    height: "65%"
   }
 };
 
